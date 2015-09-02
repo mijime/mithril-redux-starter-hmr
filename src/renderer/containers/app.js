@@ -17,7 +17,7 @@ class App {
     return (
         <div>
           <h1> {items} clicked </h1>
-          <button onclick={actions.addItem}> click me </button>
+          <button className='pure-button' onclick={actions.addItem}> click me </button>
         </div>
         );
   }

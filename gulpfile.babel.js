@@ -38,7 +38,7 @@ gulp.task('js', [], () => {
   });
   const bundle = bundler(b);
   bundle()
-    .pipe($.uglify())
+    // .pipe($.uglify())
     .pipe(gulp.dest('app/renderer'));
 });
 
@@ -51,6 +51,9 @@ gulp.task('html', [], () => {
 gulp.task('css', [], () => {
   gulp.src('src/**/*.css')
     .pipe($.cssnext())
+    .pipe($.sourcemaps.init())
+    .pipe($.minifyCss())
+    .pipe($.sourcemaps.write())
     .pipe(gulp.dest('app'));
 });
 
