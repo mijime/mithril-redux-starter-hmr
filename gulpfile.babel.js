@@ -7,9 +7,9 @@ import {createBrowserify, bundler} from './gulpfile.d/browserify';
 
 const $ = gulpLoadPlugins();
 
-gulp.task('default', ['browserify', 'jade']);
+gulp.task('default', ['browserify', 'jade', 'yaml']);
 
-gulp.task('watch', ['jade'], () => {
+gulp.task('watch', ['default'], () => {
   const b = createBrowserify({
     entries: ['src/renderer/index.js'],
   });
@@ -19,9 +19,10 @@ gulp.task('watch', ['jade'], () => {
   w.on('update', bundle);
   w.on('log', $.util.log);
   bundle()
-    .pipe(gulp.dest('lib/renderer'));
+    .pipe(gulp.dest('app/renderer'));
 
   gulp.watch(['src/**/*.jade'], ['jade']);
+  gulp.watch(['src/**/*.yml', 'src/**/*.yaml'], ['yaml']);
   require('vorlon');
 });
 
@@ -31,15 +32,21 @@ gulp.task('browserify', [], () => {
   });
   const bundle = bundler(b);
   bundle()
-    .pipe(gulp.dest('lib/renderer'));
+    .pipe(gulp.dest('app/renderer'));
 });
 
 gulp.task('jade', [], () => {
   gulp.src('src/**/*.jade')
     .pipe($.jade({pretty: true}))
-    .pipe(gulp.dest('lib'));
+    .pipe(gulp.dest('app'));
+});
+
+gulp.task('yaml', [], () => {
+  gulp.src(['src/**/*.yml', 'src/**/*.yaml'])
+    .pipe($.yaml({space: 2}))
+    .pipe(gulp.dest('app'));
 });
 
 gulp.task('clean', [], () => {
-  del(['lib', '*.log']);
+  del(['app', '*.log']);
 });

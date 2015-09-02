@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "gulp",
-    "watch": "gulp watch",
+    "watch": "gulp watch >watch.log 2>watch.log",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -25,6 +25,7 @@
     "gulp-uglify": "^1.4.0",
     "gulp-util": "^3.0.6",
     "gulp-watch": "^4.3.5",
+    "gulp-yaml": "^0.2.4",
     "mithril": "^0.2.0",
     "redux": "^2.0.0",
     "ud": "^1.0.4",
