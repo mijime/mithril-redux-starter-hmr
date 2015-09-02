@@ -23,4 +23,6 @@ class App {
   }
 }
 
-export default new App();
+const instance = new App();
+
+export default instance;

@@ -36,6 +36,7 @@
     "redux": "^2.0.0",
     "redux-logger": "^1.0.6",
     "redux-thunk": "^0.1.0",
+    "through2": "^2.0.0",
     "ud": "^1.0.4",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",

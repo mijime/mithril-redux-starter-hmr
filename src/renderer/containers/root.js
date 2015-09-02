@@ -18,4 +18,6 @@ class Root {
   }
 }
 
-export default new Root();
+const instance = new Root();
+
+export default instance;
