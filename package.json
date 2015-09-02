@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "gulp",
-    "watch": "gulp watch >watch.log 2>watch.log",
+    "watch": "gulp watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -20,6 +20,7 @@
     "del": "^2.0.0",
     "flux": "^2.1.1",
     "gulp": "^3.9.0",
+    "gulp-cssnext": "^1.0.1",
     "gulp-imagemin": "^2.3.0",
     "gulp-jade": "^1.1.0",
     "gulp-load-plugins": "^0.10.0",
@@ -27,6 +28,7 @@
     "gulp-util": "^3.0.6",
     "gulp-watch": "^4.3.5",
     "gulp-yaml": "^0.2.4",
+    "magic.css": "^1.1.0",
     "mithril": "^0.2.0",
     "redux": "^2.0.0",
     "redux-logger": "^1.0.6",

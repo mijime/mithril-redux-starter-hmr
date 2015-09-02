@@ -7,7 +7,7 @@ import {createBrowserify, bundler} from './gulpfile.d/browserify';
 
 const $ = gulpLoadPlugins();
 
-gulp.task('default', ['browserify', 'jade', 'yaml', 'png']);
+gulp.task('default', ['js', 'html', 'json', 'png', 'css']);
 
 gulp.task('watch', ['default'], () => {
   const b = createBrowserify({
@@ -24,12 +24,13 @@ gulp.task('watch', ['default'], () => {
     .pipe(gulp.dest('app/renderer'));
 
   gulp.watch(['src/**/*.png'], ['png']);
-  gulp.watch(['src/**/*.jade'], ['jade']);
-  gulp.watch(['src/**/*.yml', 'src/**/*.yaml'], ['yaml']);
+  gulp.watch(['src/**/*.css'], ['css']);
+  gulp.watch(['src/**/*.jade'], ['html']);
+  gulp.watch(['src/**/*.yml', 'src/**/*.yaml'], ['json']);
   require('vorlon');
 });
 
-gulp.task('browserify', [], () => {
+gulp.task('js', [], () => {
   const b = createBrowserify({
     entries: [
       'src/renderer/index.js',
@@ -41,13 +42,19 @@ gulp.task('browserify', [], () => {
     .pipe(gulp.dest('app/renderer'));
 });
 
-gulp.task('jade', [], () => {
+gulp.task('html', [], () => {
   gulp.src('src/**/*.jade')
     .pipe($.jade({pretty: true}))
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('yaml', [], () => {
+gulp.task('css', [], () => {
+  gulp.src('src/**/*.css')
+    .pipe($.cssnext())
+    .pipe(gulp.dest('app'));
+});
+
+gulp.task('json', [], () => {
   gulp.src(['src/**/*.yml', 'src/**/*.yaml'])
     .pipe($.yaml({space: 2}))
     .pipe(gulp.dest('app'));
