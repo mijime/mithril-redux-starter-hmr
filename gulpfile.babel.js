@@ -7,11 +7,13 @@ import {createBrowserify, bundler} from './gulpfile.d/browserify';
 
 const $ = gulpLoadPlugins();
 
-gulp.task('default', ['browserify', 'jade', 'yaml']);
+gulp.task('default', ['browserify', 'jade', 'yaml', 'png']);
 
 gulp.task('watch', ['default'], () => {
   const b = createBrowserify({
-    entries: ['src/renderer/index.js'],
+    entries: [
+      'src/renderer/index.js',
+    ],
   });
   const w = watchify(b.plugin(['browserify-hmr']));
   const bundle = bundler(w);
@@ -21,6 +23,7 @@ gulp.task('watch', ['default'], () => {
   bundle()
     .pipe(gulp.dest('app/renderer'));
 
+  gulp.watch(['src/**/*.png'], ['png']);
   gulp.watch(['src/**/*.jade'], ['jade']);
   gulp.watch(['src/**/*.yml', 'src/**/*.yaml'], ['yaml']);
   require('vorlon');
@@ -28,10 +31,13 @@ gulp.task('watch', ['default'], () => {
 
 gulp.task('browserify', [], () => {
   const b = createBrowserify({
-    entries: ['src/renderer/index.js'],
+    entries: [
+      'src/renderer/index.js',
+    ],
   });
   const bundle = bundler(b);
   bundle()
+    .pipe($.uglify())
     .pipe(gulp.dest('app/renderer'));
 });
 
@@ -44,6 +50,12 @@ gulp.task('jade', [], () => {
 gulp.task('yaml', [], () => {
   gulp.src(['src/**/*.yml', 'src/**/*.yaml'])
     .pipe($.yaml({space: 2}))
+    .pipe(gulp.dest('app'));
+});
+
+gulp.task('png', [], () => {
+  gulp.src(['src/**/*.png'])
+    .pipe($.imagemin())
     .pipe(gulp.dest('app'));
 });
 

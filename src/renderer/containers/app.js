@@ -5,11 +5,11 @@ import * as ItemActions from '../actions/item';
 
 class App {
   controller(props, children) {
-    // consolue.debug('App:controller', props, children);
+    console.debug('App:controller', props, children);
   }
 
   view(controller, props, children) {
-    // consolue.debug('App:view', props, children);
+    console.debug('App:view', props, children);
 
     const {dispatch, items} = props;
     const actions = bindActionCreators(ItemActions, dispatch);

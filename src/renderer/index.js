@@ -1,9 +1,14 @@
 import m from 'mithril';
-import {defn} from 'ud';
+import {defn, defonce} from 'ud';
 import Root from './containers/root';
+import configureStore from './store';
 
-const main = defn(module, function() {
-  m.mount(document.body, <Root />);
+const store = defonce(module, function() {
+  return configureStore();
 });
 
-main();
+const main = defn(module, function(store) {
+  m.mount(document.body, <Root {...store} />);
+});
+
+main(store);

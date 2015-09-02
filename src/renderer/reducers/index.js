@@ -3,7 +3,6 @@ import {combineReducers} from 'redux';
 import {ADD_ITEM} from '../constants/item';
 
 function items(state=0, action={}) {
-  // consolue.debug('items', state, action);
   switch(action.type) {
     case ADD_ITEM:
       return state + action.count;
