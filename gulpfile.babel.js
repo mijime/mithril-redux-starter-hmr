@@ -2,6 +2,7 @@ import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import watchify from 'watchify';
 import del from 'del';
+import path from 'path';
 
 import {createBrowserify, bundler} from './gulpfile.d/browserify';
 
@@ -9,7 +10,18 @@ const $ = gulpLoadPlugins();
 
 gulp.task('default', ['js', 'html', 'json', 'png', 'css']);
 
-gulp.task('watch', ['html', 'json', 'png', 'css'], () => {
+gulp.task('watch', ['js:watch', 'html', 'json', 'png', 'css'], done => {
+
+  gulp.watch(['src/**/*.png'], ['png']);
+  gulp.watch(['src/**/*.css'], ['css']);
+  gulp.watch(['src/**/*.jade'], ['html']);
+  gulp.watch(['src/**/*.yml', 'src/**/*.yaml'], ['json']);
+
+  gulp.src(path.resolve(__dirname, 'app/renderer'))
+    .pipe($.webserver());
+});
+
+gulp.task('js:watch', [], done => {
   const b = createBrowserify({
     entries: [
       'src/renderer/index.js',
@@ -20,13 +32,13 @@ gulp.task('watch', ['html', 'json', 'png', 'css'], () => {
 
   w.on('update', bundle);
   w.on('log', $.util.log);
+  w.on('bytes', e => {
+    if (done)
+      done();
+  });
+
   bundle()
     .pipe(gulp.dest('app/renderer'));
-
-  gulp.watch(['src/**/*.png'], ['png']);
-  gulp.watch(['src/**/*.css'], ['css']);
-  gulp.watch(['src/**/*.jade'], ['html']);
-  gulp.watch(['src/**/*.yml', 'src/**/*.yaml'], ['json']);
 });
 
 gulp.task('js', [], () => {

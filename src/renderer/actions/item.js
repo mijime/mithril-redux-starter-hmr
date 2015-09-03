@@ -8,6 +8,6 @@ export function addItem(e) {
         type: ADD_ITEM,
         count: 1,
       });
-    }, 1000 * 0.5);
+    }, 1000 * 0.2);
   }
 }
