@@ -1,0 +1,92 @@
+parser: babel-eslint
+env:
+  browser: true
+  node: true
+rules:
+  array-bracket-spacing: 2
+  arrow-parens: 2
+  arrow-spacing: 2
+  brace-style:
+  - 2
+  - 1tbs
+  - allowSingleLine: false
+  callback-return:
+  - 2
+  - - callback
+    - done
+    - next
+  comma-style:
+  - 2
+  - last
+  computed-property-spacing: 2
+  consistent-this:
+  - 2
+  - DO NOT USE
+  default-case: 2
+  dot-location:
+  - 2
+  - property
+  indent:
+  - 1
+  - 2
+  key-spacing:
+  - 2
+  - afterColon: true
+    beforeColon: false
+  linebreak-style:
+  - 2
+  - unix
+  max-depth:
+  - 1
+  - 2
+  max-len:
+  - 1
+  - 80
+  - 2
+  max-params:
+  - 1
+  - 3
+  no-class-assign: 2
+  no-const-assign: 2
+  no-else-return: 2
+  no-invalid-this: 2
+  no-lonely-if: 2
+  no-multi-spaces:
+  - 2
+  - exceptions:
+      AssignmentExpression: true
+      ImportDeclaration: true
+      Property: true
+      VariableDeclarator: true
+  no-multiple-empty-lines:
+  - 2
+  - max: 1
+  no-nested-ternary: 2
+  no-new-require: 2
+  no-self-compare: 2
+  no-throw-literal: 2
+  no-unneeded-ternary: 1
+  no-unused-expressions: 2
+  no-unused-vars:
+  - 1
+  - vars: all
+    args: all
+    varsIgnorePattern: ^[A-Z]|^.$|^_
+    argsIgnorePattern: ^[A-Z]|^_
+  no-use-before-define: 2
+  no-var: 2
+  no-void: 2
+  object-curly-spacing: 2
+  prefer-const: 2
+  quotes:
+  - 2
+  - single
+  space-after-keywords:
+  - 2
+  - always
+  space-before-blocks:
+  - 2
+  - always
+  space-before-function-paren: 2
+  spaced-comment: 2
+  strict: 0

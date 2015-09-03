@@ -10,11 +10,11 @@ const loggerMiddleware = createLogger({
 });
 
 const createStoreWithMiddleware = applyMiddleware(
-    thunkMiddleware,
-    loggerMiddleware,
-    redrawMiddleware
-    )(createStore);
+  thunkMiddleware,
+  loggerMiddleware,
+  redrawMiddleware
+)(createStore);
 
-export default function configureStore(initalState) {
+export default function configureStore (initalState) {
   return createStoreWithMiddleware(reducers, initalState);
 }

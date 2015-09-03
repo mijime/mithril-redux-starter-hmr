@@ -4,14 +4,14 @@ import App from './app';
 import {Provider} from '../lib/mithril-redux';
 
 class Root {
-  controller(props, children) {
+  controller (props) {
     // console.debug('Root:controller', props, children);
 
     const {store} = props;
     this.store = store;
   }
 
-  view(controller, props, children) {
+  view (controller) {
     // console.debug('Root:view', props, children);
 
     const {store} = controller;

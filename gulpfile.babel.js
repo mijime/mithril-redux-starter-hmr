@@ -18,13 +18,13 @@ gulp.task('watch', ['js:watch', 'html', 'json', 'png', 'css'], () => {
   gulp.watch(['src/**/*.yml', 'src/**/*.yaml'], ['json']);
 
   return gulp
-    .src(path.resolve(__dirname, 'app/renderer'))
-    .pipe($.webserver());
+           .src(path.resolve(__dirname, 'app/renderer'))
+           .pipe($.webserver());
 });
 
-gulp.task('js:watch', [], () => {
+gulp.task('js:watch', ['js:lint'], () => {
   const b = createBrowserify({
-    entries: [ 'src/renderer/index.js', ],
+    entries: ['src/renderer/index.js'],
   });
   const w = watchify(b.plugin(['browserify-hmr']));
   const bundle = bundler(w);
@@ -36,9 +36,16 @@ gulp.task('js:watch', [], () => {
     .pipe(gulp.dest('app/renderer'));
 });
 
-gulp.task('js', [], () => {
+gulp.task('js:lint', [], () => {
+  return gulp.src(['src/**/*.js'])
+    .pipe($.eslint())
+    .pipe($.eslint.format())
+    .pipe($.eslint.failOnError());
+});
+
+gulp.task('js', ['js:lint'], () => {
   const b = createBrowserify({
-    entries: [ 'src/renderer/index.js', ],
+    entries: ['src/renderer/index.js'],
   });
   const bundle = bundler(b);
 
