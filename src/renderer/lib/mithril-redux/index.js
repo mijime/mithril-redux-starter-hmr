@@ -45,8 +45,8 @@ export const Provider = {
 export function redrawMiddleware () {
   return function (next) {
     return function (action) {
-      m.redraw();
       next(action);
+      m.redraw();
     };
   };
 }

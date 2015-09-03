@@ -11,7 +11,7 @@ rules:
   - 1tbs
   - allowSingleLine: false
   callback-return:
-  - 2
+  - 0
   - - callback
     - done
     - next
