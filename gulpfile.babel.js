@@ -37,7 +37,6 @@ gulp.task('js', [], () => {
   });
   const bundle = bundler(b);
   bundle()
-    // .pipe($.uglify())
     .pipe(gulp.dest('app/renderer'));
 });
 
