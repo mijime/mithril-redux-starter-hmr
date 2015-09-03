@@ -9,7 +9,7 @@ const $ = gulpLoadPlugins();
 
 gulp.task('default', ['js', 'html', 'json', 'png', 'css']);
 
-gulp.task('watch', ['default'], () => {
+gulp.task('watch', ['html', 'json', 'png', 'css'], () => {
   const b = createBrowserify({
     entries: [
       'src/renderer/index.js',
@@ -27,7 +27,6 @@ gulp.task('watch', ['default'], () => {
   gulp.watch(['src/**/*.css'], ['css']);
   gulp.watch(['src/**/*.jade'], ['html']);
   gulp.watch(['src/**/*.yml', 'src/**/*.yaml'], ['json']);
-  require('vorlon');
 });
 
 gulp.task('js', [], () => {
@@ -70,5 +69,5 @@ gulp.task('png', [], () => {
 });
 
 gulp.task('clean', [], () => {
-  del(['app', '*.log']);
+  del(['app', '**/*.log']);
 });
