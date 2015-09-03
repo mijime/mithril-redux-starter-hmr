@@ -2,14 +2,17 @@ import Express from 'express';
 const app = Express();
 
 export default class Server {
-  constructor() {
-    app.use(Express.static('app/renderer'));
+  constructor({port=0, path}) {
+    console.log(`Port: ${port} Path: ${path}`);
+    app.use(Express.static(path));
+    this.context = app.listen(port, this.handleListen.bind(this));
+  }
 
-    app.listen(8000, '127.0.0.1', err => {
-      if (err)
-        throw err;
+  handleListen(err) {
+    if (err)
+      throw err;
 
-      console.log('listen http://localhost:8000');
-    });
+    const {port} = this.context.address();
+    console.log(`listen: http://localhost:${port}`);
   }
 }
