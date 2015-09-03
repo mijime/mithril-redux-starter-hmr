@@ -5,7 +5,7 @@ export function connect (select) {
     return {
       controller (props) {
         // console.debug('Connector:controller', props, children);
-        const {dispatch, getState} = props;
+        const { dispatch, getState } = props;
 
         this.dispatch = dispatch;
         this.getState = getState;
@@ -13,9 +13,9 @@ export function connect (select) {
 
       view (controller) {
         // console.debug('Connector:view', controller, props, children);
-        const {dispatch, getState} = controller;
+        const { dispatch, getState } = controller;
         const state = select(getState());
-        return (<Container dispatch={dispatch} {...state} />);
+        return (<Container dispatch={ dispatch } { ...state } />);
       },
     };
   };
@@ -25,7 +25,7 @@ export const Provider = {
   controller (props, children) {
     // console.debug('Provider:controller', props, children);
 
-    const {store} = props;
+    const { store } = props;
 
     this.store = store;
     if (typeof children[0] === 'function')
@@ -37,9 +37,9 @@ export const Provider = {
   view (controller) {
     // console.debug('Provider:view', props, children);
 
-    const {store, Connector} = controller;
-    return (<Connector {...store} />);
-  }
+    const { store, Connector } = controller;
+    return (<Connector { ...store } />);
+  },
 };
 
 export function redrawMiddleware () {

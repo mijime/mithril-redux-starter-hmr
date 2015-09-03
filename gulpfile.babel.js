@@ -4,29 +4,29 @@ import watchify from 'watchify';
 import del from 'del';
 import path from 'path';
 
-import {createBrowserify, bundler} from './gulpfile.d/browserify';
+import { createBrowserify, bundler } from './gulpfile.d/browserify';
 
 const $ = gulpLoadPlugins();
 
-gulp.task('default', ['js', 'html', 'json', 'png', 'css']);
+gulp.task('default', [ 'js', 'html', 'json', 'png', 'css' ]);
 
-gulp.task('watch', ['js:watch', 'html', 'json', 'png', 'css'], () => {
+gulp.task('watch', [ 'js:watch', 'html', 'json', 'png', 'css' ], () => {
 
-  gulp.watch(['src/**/*.png'], ['png']);
-  gulp.watch(['src/**/*.css'], ['css']);
-  gulp.watch(['src/**/*.jade'], ['html']);
-  gulp.watch(['src/**/*.yml', 'src/**/*.yaml'], ['json']);
+  gulp.watch([ 'src/**/*.png' ], [ 'png' ]);
+  gulp.watch([ 'src/**/*.css' ], [ 'css' ]);
+  gulp.watch([ 'src/**/*.jade' ], [ 'html' ]);
+  gulp.watch([ 'src/**/*.yml', 'src/**/*.yaml' ], [ 'json' ]);
 
   return gulp
            .src(path.resolve(__dirname, 'app/renderer'))
            .pipe($.webserver());
 });
 
-gulp.task('js:watch', ['js:lint'], () => {
+gulp.task('js:watch', [ 'js:lint' ], () => {
   const b = createBrowserify({
-    entries: ['src/renderer/index.js'],
+    entries: [ 'src/renderer/index.js' ],
   });
-  const w = watchify(b.plugin(['browserify-hmr']));
+  const w = watchify(b.plugin([ 'browserify-hmr' ]));
   const bundle = bundler(w);
 
   w.on('update', bundle);
@@ -37,15 +37,15 @@ gulp.task('js:watch', ['js:lint'], () => {
 });
 
 gulp.task('js:lint', [], () => {
-  return gulp.src(['src/**/*.js'])
+  return gulp.src([ 'src/**/*.js' ])
     .pipe($.eslint())
     .pipe($.eslint.format())
     .pipe($.eslint.failOnError());
 });
 
-gulp.task('js', ['js:lint'], () => {
+gulp.task('js', [ 'js:lint' ], () => {
   const b = createBrowserify({
-    entries: ['src/renderer/index.js'],
+    entries: [ 'src/renderer/index.js' ],
   });
   const bundle = bundler(b);
 
@@ -56,7 +56,7 @@ gulp.task('js', ['js:lint'], () => {
 gulp.task('html', [], () => {
   return gulp
     .src('src/**/*.jade')
-    .pipe($.jade({pretty: true}))
+    .pipe($.jade({ pretty: true }))
     .pipe(gulp.dest('app'));
 });
 
@@ -72,18 +72,18 @@ gulp.task('css', [], () => {
 
 gulp.task('json', [], () => {
   return gulp
-    .src(['src/**/*.yml', 'src/**/*.yaml'])
-    .pipe($.yaml({space: 2}))
+    .src([ 'src/**/*.yml', 'src/**/*.yaml' ])
+    .pipe($.yaml({ space: 2 }))
     .pipe(gulp.dest('app'));
 });
 
 gulp.task('png', [], () => {
   return gulp
-    .src(['src/**/*.png'])
+    .src([ 'src/**/*.png' ])
     .pipe($.imagemin())
     .pipe(gulp.dest('app'));
 });
 
 gulp.task('clean', [], () => {
-  return del(['app', '**/*.log']);
+  return del([ 'app', '**/*.log' ]);
 });

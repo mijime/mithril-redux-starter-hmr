@@ -3,13 +3,19 @@ env:
   browser: true
   node: true
 rules:
-  array-bracket-spacing: 2
+  array-bracket-spacing:
+  - 2
+  - always
   arrow-parens: 2
   arrow-spacing: 2
+  camelcase:
+  - 2
+  - properties: always
   brace-style:
   - 2
   - 1tbs
   - allowSingleLine: false
+  block-spacing: 2
   callback-return:
   - 0
   - - callback
@@ -18,10 +24,11 @@ rules:
   comma-style:
   - 2
   - last
-  computed-property-spacing: 2
-  consistent-this:
+  comma-dangle:
   - 2
-  - DO NOT USE
+  - always-multiline
+  computed-property-spacing: 2
+  consistent-this: 2
   default-case: 2
   dot-location:
   - 2
@@ -76,7 +83,9 @@ rules:
   no-use-before-define: 2
   no-var: 2
   no-void: 2
-  object-curly-spacing: 2
+  object-curly-spacing:
+  - 2
+  - always
   prefer-const: 2
   quotes:
   - 2

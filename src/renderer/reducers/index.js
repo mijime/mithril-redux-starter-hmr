@@ -1,6 +1,6 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 
-import {ADD_ITEM} from '../constants/item';
+import { ADD_ITEM } from '../constants/item';
 
 function items (state=0, action={}) {
   switch (action.type) {
@@ -12,6 +12,6 @@ function items (state=0, action={}) {
   }
 }
 
-const reducers = combineReducers({items});
+const reducers = combineReducers({ items });
 
 export default reducers;
