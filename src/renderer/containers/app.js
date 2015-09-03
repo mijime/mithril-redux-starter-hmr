@@ -1,7 +1,7 @@
 import m from 'mithril';
-import { bindActionCreators  } from 'redux';
+import { bindActionCreators } from 'redux';
 
-import { connect  } from '../lib/mithril-redux';
+import { connect } from '../lib/mithril-redux';
 import * as ItemActions from '../actions/item';
 
 class App {

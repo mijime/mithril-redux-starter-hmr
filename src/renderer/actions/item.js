@@ -1,5 +1,5 @@
 import m from 'mithril';
-import { ADD_ITEM  } from '../constants/item';
+import { ADD_ITEM } from '../constants/item';
 
 export function addItem () {
   return (dispatch) => {

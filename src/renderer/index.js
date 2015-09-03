@@ -1,5 +1,5 @@
 import m from 'mithril';
-import { defn, defonce  } from 'ud';
+import { defn, defonce } from 'ud';
 
 import Root from './containers/root';
 import configureStore from './store';
