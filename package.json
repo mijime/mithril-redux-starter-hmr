@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "private": true,
-  "main": "index.js",
   "scripts": {
-    "serve": "node .",
     "build": "gulp",
     "watch": "gulp watch"
   },
