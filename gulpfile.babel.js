@@ -18,8 +18,8 @@ gulp.task('watch', [ 'js:watch', 'html', 'json', 'png', 'css' ], () => {
   gulp.watch([ 'src/**/*.yml', 'src/**/*.yaml' ], [ 'json' ]);
 
   return gulp
-           .src(path.resolve(__dirname, 'app/renderer'))
-           .pipe($.webserver());
+    .src(path.resolve(__dirname, 'app/renderer'))
+    .pipe($.webserver());
 });
 
 gulp.task('js:watch', [ 'js:lint' ], () => {
