@@ -28,12 +28,12 @@ gulp.task('js:watch', [ 'js:lint' ], () => {
   });
   const w = watchify(b.plugin([ 'browserify-hmr' ]));
   const bundle = bundler(w);
+  const writeBundle = () => bundle().pipe(gulp.dest('app/renderer'));
 
-  w.on('update', bundle);
+  w.on('update', writeBundle);
   w.on('log', $.util.log);
 
-  return bundle()
-    .pipe(gulp.dest('app/renderer'));
+  return writeBundle();
 });
 
 gulp.task('js:lint', [], () => {
