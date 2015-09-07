@@ -5,7 +5,7 @@ env:
 rules:
   array-bracket-spacing:
   - 2
-  - always
+  - never
   arrow-parens: 2
   arrow-spacing: 2
   camelcase:
@@ -85,7 +85,7 @@ rules:
   no-void: 2
   object-curly-spacing:
   - 2
-  - always
+  - never
   prefer-const: 2
   quotes:
   - 2
